@@ -20,3 +20,5 @@ target_include_directories(
          ${NN_LIB_BASE_DIR}/xa_nnlib/algo/ndsp/hifi4/include/
          ${NXP_SDK_ROOT_DIR}/middleware/dsp/naturedsp/hifi4/include/
 )
+
+target_link_libraries(cadence_kernels PRIVATE xa_nnlib)

@@ -31,16 +31,21 @@ void dequantize_per_tensor_out(
 
   if (input.scalar_type() == ScalarType::Byte) {
     const uint8_t* input_data = input.const_data_ptr<uint8_t>();
-    impl::HiFi::kernels::dequantize<uint8_t>(
-        out_data, input_data, scale, zero_point, numel);
+#if 0 //NNLIB_OPT (not available in nnlib)
+    xa_nn_elm_dequantize_asym8u_f32(out_data, input_data, zero_point, scale, numel);
+#else    
+    impl::HiFi::kernels::dequantize<uint8_t>(out_data, input_data, scale, zero_point, numel);
+#endif
   } else if (input.scalar_type() == ScalarType::Char) {
     const int8_t* input_data = input.const_data_ptr<int8_t>();
-    impl::HiFi::kernels::dequantize<int8_t>(
-        out_data, input_data, scale, zero_point, numel);
+#if NNLIB_OPT
+    xa_nn_elm_dequantize_asym8s_f32(out_data, input_data, zero_point, scale, numel);
+#else    
+    impl::HiFi::kernels::dequantize<int8_t>(out_data, input_data, scale, zero_point, numel);
+#endif
   } else if (input.scalar_type() == ScalarType::Int) {
     const int32_t* input_data = input.const_data_ptr<int32_t>();
-    impl::HiFi::kernels::dequantize<int32_t>(
-        out_data, input_data, scale, zero_point, numel);
+    impl::HiFi::kernels::dequantize<int32_t>(out_data, input_data, scale, zero_point, numel);
   } else {
     ET_CHECK_MSG(false, "Unhandled input dtype %hhd", input.scalar_type());
   }

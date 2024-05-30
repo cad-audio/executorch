@@ -68,3 +68,6 @@
 [submodule "third-party/ios-cmake"]
 	path = third-party/ios-cmake
 	url = https://github.com/leetal/ios-cmake
+[submodule "backends/cadence/hifi/third-party/nnlib/nnlib-hifi4"]
+	path = backends/cadence/hifi/third-party/nnlib/nnlib-hifi4
+	url = https://github.com/foss-xtensa/nnlib-hifi4.git
