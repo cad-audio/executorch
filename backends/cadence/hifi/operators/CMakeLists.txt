@@ -22,10 +22,12 @@ endif()
 set(_aten_ops__srcs
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_add.cpp"
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_div.cpp"
+    "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_mean.cpp"
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_mul.cpp"
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_sigmoid.cpp"
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_sub.cpp"
     "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_tanh.cpp"
+    "${EXECUTORCH_ROOT}/backends/cadence/hifi/operators/op_where.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_bmm.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_cat.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_clone.cpp"
@@ -37,7 +39,6 @@ set(_aten_ops__srcs
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_split_with_sizes_copy.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_to_copy.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_view_copy.cpp"
-    "${EXECUTORCH_ROOT}/kernels/portable/cpu/op_where.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/pattern/unary_ufunc_realhb_to_floath.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/activation_ops_util.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/broadcast_util.cpp"
@@ -47,6 +48,7 @@ set(_aten_ops__srcs
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/matmul_ops_util.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/reduce_util.cpp"
     "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/repeat_util.cpp"
+    "${EXECUTORCH_ROOT}/kernels/portable/cpu/util/slice_util.cpp"
     )
 add_library(aten_ops_cadence ${_aten_ops__srcs})
 target_link_libraries(aten_ops_cadence PUBLIC executorch)
